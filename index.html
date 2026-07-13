@@ -900,6 +900,18 @@ svg.leaflet-image-layer.leaflet-interactive path {
         <p class="note" style="margin-top:10px;">Reading: the gap between rate&times;kWh and what a driver pays is <strong>not just sales tax and ChargePoint fees</strong> &mdash; it lines up with a time-based charging fee layered on top of the energy rate. Tax and ChargePoint's own cut are a separate, smaller layer (see pie chart).</p>
       </div>
     </div>
+    <div class="panel" style="margin-bottom:18px;">
+      <h3>Full Reconciliation Check &mdash; Every Billed Session</h3>
+      <p class="note">Checked all 235 sessions with billing data (of 288 total) against two formulas derived from the raw fee/tax columns.</p>
+      <table class="data" style="margin-bottom:14px;">
+        <tr><th>Check</th><th>Formula</th><th>Result</th></tr>
+        <tr><td>Gross Amount</td><td>Net Session Fee + Sales Tax + Service Fee (+ Excise/Other/Service Fee Tax, all $0 here)</td><td class="num" style="color:var(--tourism); font-weight:700;">235 of 235 reconcile exactly</td></tr>
+        <tr><td>Payout Amount</td><td>Gross Amount &minus; Service Fee &minus; Flex Billing Fee &minus; Sales Tax</td><td class="num" style="color:var(--cityhall); font-weight:700;">234 of 235 reconcile &mdash; 1 flagged</td></tr>
+      </table>
+      <div class="callout" style="border-left-color:var(--cityhall); background:#F7E6DF;">
+        <strong>&#9888; One session does not reconcile.</strong> Session <strong>4707150431</strong> (BARBOURVILLE / CITY HALL, Dec 20 2025) has Gross Amount $18.28 which checks out exactly, but Payout Amount is <strong>$14.68</strong> when the formula predicts <strong>$15.67</strong> &mdash; a shortfall of <strong>$0.99</strong> to the charger owner, with no fee/tax column explaining the extra deduction. Every other billed session in the dataset reconciles to the penny. Worth flagging to ChargePoint or double-checking against the original statement for that one transaction.
+      </div>
+    </div>
   </section>
 
   <!-- RECOMMEND -->
