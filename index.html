@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Barbourville EV Charging &mdash; City Benchmark Dashboard</title>
+<title>Barbourville EV Charging Benchmark Dashboard</title>
 <style id="leaflet-css">/* required styles */
 
 .leaflet-pane,
@@ -789,9 +789,9 @@ svg.leaflet-image-layer.leaflet-interactive path {
 <body>
 
 <header class="hero">
-  <div class="eyebrow">Mountain Association &middot; Energy Team &middot; Central Appalachia Internship</div>
-  <h1>Barbourville, KY &mdash; Public EV Charging Benchmark</h1>
-  <p class="sub">Twelve months of ChargePoint data from BARBOURVILLE / CITY HALL (Level 3 DCFC) and BARBOURVILLE / TOURISM (Level 2), used as a benchmark for a nearby city considering its own Level 2 charger &mdash; what it costs, who it attracts, and what it can generate.</p>
+  <div class="eyebrow">Mountain Association &middot; Energy Intern</div>
+  <h1>Barbourville, KY: Public EV Charging Benchmark</h1>
+  <p class="sub">Twelve months of ChargePoint data from BARBOURVILLE / CITY HALL (Level 3 DCFC) and BARBOURVILLE / TOURISM (Level 2), used as a benchmark for Pineville, KY, which is considering its own Level 2 charger.</p>
   <div class="hero-meta" id="heroMeta"></div>
 </header>
 
@@ -841,12 +841,12 @@ svg.leaflet-image-layer.leaflet-interactive path {
     </div>
     <div class="panel" style="margin-bottom:18px;">
       <h3>Sessions per Day</h3>
-      <p class="note">Every calendar day in the reporting period (Oct 15, 2025 &ndash; Jul 9, 2026) &mdash; most days show 0 sessions, with visible bursts of activity.</p>
+      <p class="note">Every calendar day in the reporting period (Oct 15, 2025&ndash;Jul 9, 2026). Most days show 0 sessions, with visible bursts of activity.</p>
       <div class="chart-wrap"><canvas id="chartDailySessions"></canvas></div>
     </div>
     <div class="panel" style="margin-bottom:18px;">
       <h3>Sessions per Week</h3>
-      <p class="note">Same data rolled up to Monday-start weeks &mdash; easier to see the trend than the daily view above.</p>
+      <p class="note">Same data rolled up to Monday-start weeks, easier to see the trend than the daily view above.</p>
       <div class="chart-wrap"><canvas id="chartWeeklySessions"></canvas></div>
     </div>
     <div class="panel" style="margin-bottom:18px;">
@@ -893,12 +893,12 @@ svg.leaflet-image-layer.leaflet-interactive path {
         <p class="note">Posted rate: $0.50/kWh (City Hall v7), $0.40/kWh (City Hall v4/v6), $0.25/kWh (Tourism).</p>
         <table class="data">
           <tr><th>Check</th><th>Result</th></tr>
-          <tr><td>Energy charge (rate &times; kWh) matches the pre-tax session charge</td><td class="num">Not exactly &mdash; gap grows with session length</td></tr>
+          <tr><td>Energy charge (rate &times; kWh) matches the pre-tax session charge</td><td class="num">Not exactly, gap grows with session length</td></tr>
           <tr><td>Correlation of the gap with session duration</td><td class="num">&asymp; 0.88</td></tr>
           <tr><td>Regression fit (energy charge + duration &rarr; session charge)</td><td class="num">R&sup2; &asymp; 0.97</td></tr>
           <tr><td>Estimated add-on beyond the per-kWh energy charge</td><td class="num">&asymp; $3.63 / hour</td></tr>
         </table>
-        <p class="note" style="margin-top:10px;">Reading: the gap between rate&times;kWh and what a driver pays is <strong>not just sales tax and ChargePoint fees</strong> &mdash; it lines up with a time-based charging fee layered on top of the energy rate. Tax and ChargePoint's own cut are a separate, smaller layer (see pie chart). This regression was computed once across all sessions and does not change with the toggle above.</p>
+        <p class="note" style="margin-top:10px;">Reading: the gap between rate&times;kWh and what a driver pays is <strong>not just sales tax and ChargePoint fees</strong>. It lines up with a time-based charging fee layered on top of the energy rate. Tax and ChargePoint's own cut are a separate, smaller layer (see pie chart). This regression was computed once across all sessions and does not change with the toggle above.</p>
       </div>
     </div>
     <div class="panel" style="margin-bottom:18px;">
@@ -913,7 +913,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
     </div>
     <div class="panel" style="margin-bottom:18px;">
       <h3>Reconciliation Sample <span id="reconSampleStationLabel"></span></h3>
-      <p class="note">A 15-row sample from the full session-level check &mdash; any flagged (non-reconciling) session is always included first, regardless of the toggle above.</p>
+      <p class="note">A 15-row sample from the full session-level check. Any flagged (non-reconciling) session is always included first, regardless of the toggle above.</p>
       <div style="overflow-x:auto;">
         <table class="data" id="reconSampleTable"></table>
       </div>
@@ -923,23 +923,23 @@ svg.leaflet-image-layer.leaflet-interactive path {
   <!-- RECOMMEND -->
   <section class="view" id="view-recommend">
     <div class="panel" style="margin-bottom:18px;">
-      <h3>What This Means for a City Considering a Level 2 Charger</h3>
+      <h3>What This Means for Pineville, Considering a Level 2 Charger</h3>
       <table class="data" id="recTable"></table>
     </div>
     <div class="grid-3">
-      <div class="panel"><h3>Attracts</h3><p style="font-size:14px;line-height:1.6;">Over a third of identified Tourism-charger sessions came from out of state (IL, PA, OH, TN) &mdash; a Level 2 charger downtown reads as a stop for regional travelers, not just an amenity for residents.</p></div>
-      <div class="panel"><h3>Dwell Time</h3><p style="font-size:14px;line-height:1.6;">Tourism (L2) sessions average <strong>78 minutes</strong> vs. 38 minutes at the DCFC &mdash; roughly twice the time a visitor could spend browsing nearby shops or eating downtown.</p></div>
-      <div class="panel"><h3>Revenue</h3><p style="font-size:14px;line-height:1.6;">The Level 2 charger generated about <strong>$458</strong> in gross session revenue and delivered <strong>392 kWh</strong> over 12 months at low volume &mdash; a modest but low-maintenance revenue stream, not the primary business case.</p></div>
+      <div class="panel"><h3>Attracts</h3><p style="font-size:14px;line-height:1.6;">Over a third of identified Tourism-charger sessions came from out of state (IL, PA, OH, TN). A Level 2 charger downtown reads as a stop for regional travelers, not just an amenity for residents.</p></div>
+      <div class="panel"><h3>Dwell Time</h3><p style="font-size:14px;line-height:1.6;">Tourism (L2) sessions average <strong>78 minutes</strong> vs. 38 minutes at the DCFC, roughly twice the time a visitor could spend browsing nearby shops or eating downtown.</p></div>
+      <div class="panel"><h3>Revenue</h3><p style="font-size:14px;line-height:1.6;">The Level 2 charger generated about <strong>$458</strong> in gross session revenue and delivered <strong>392 kWh</strong> over 12 months at low volume: a modest but low-maintenance revenue stream, not the primary business case.</p></div>
     </div>
     <div class="callout" style="margin-top:18px;">
-      <strong>Net zero note:</strong> this dataset only contains the charger's own delivered-energy meter, not a separate solar production meter &mdash; so it cannot confirm whether solar currently offsets charging load. A new Level 2 installation paired with on-site solar would need its own production meter tracked the same way to make that comparison credibly.
+      <strong>Net zero note:</strong> this dataset only contains the charger's own delivered-energy meter, not a separate solar production meter, so it cannot confirm whether solar currently offsets charging load. A new Level 2 installation paired with on-site solar would need its own production meter tracked the same way to make that comparison credibly.
     </div>
   </section>
 
 </main>
 
 <footer>
-  Source: ChargePoint dashboard exports (Sessions, Session Updates, Organization Statement, Energy-vs-Time), Barbourville City Tourism account, Jul 2025&ndash;Jul 2026. State of origin is estimated from ZIP3 prefix, not geocoded. Prepared as an internal benchmark exhibit &mdash; not an official city economic study.
+  Source: ChargePoint dashboard exports (Sessions, Session Updates, Organization Statement, Energy-vs-Time), Barbourville City Tourism account, Jul 2025&ndash;Jul 2026. State of origin is estimated from ZIP3 prefix, not geocoded. Prepared as an internal benchmark exhibit for Pineville, KY &mdash; not an official city economic study.
 </footer>
 
 <script>
@@ -1156,9 +1156,9 @@ function renderReconPanel(){
     const flagged = sample.find(r => !r.gross_ok || !r.payout_ok);
     let detail = '';
     if (flagged) {
-      detail = ` Session <strong>${flagged.session_id}</strong> (${flagged.station}) has Gross Amount ${fmtMoney2(flagged.gross)} which checks out exactly, but Payout Amount is <strong>${fmtMoney2(flagged.payout)}</strong> when the formula predicts <strong>${fmtMoney2(flagged.calc_payout)}</strong> &mdash; a shortfall of <strong>${fmtMoney2(Math.abs(flagged.payout_diff))}</strong> to the charger owner, with no fee/tax column explaining the extra deduction. See it highlighted in the sample table below.`;
+      detail = ` Session <strong>${flagged.session_id}</strong> (${flagged.station}) has Gross Amount ${fmtMoney2(flagged.gross)} which checks out exactly, but Payout Amount is <strong>${fmtMoney2(flagged.payout)}</strong> when the formula predicts <strong>${fmtMoney2(flagged.calc_payout)}</strong>, a shortfall of <strong>${fmtMoney2(Math.abs(flagged.payout_diff))}</strong> to the charger owner, with no fee/tax column explaining the extra deduction. See it highlighted in the sample table below.`;
     }
-    callout.innerHTML = `<strong>&#9888; ${totalBad} check(s) failed for ${label}</strong> &mdash; total discrepancy found: ${fmtMoney2(s.discrepancy)}.${detail}`;
+    callout.innerHTML = `<strong>&#9888; ${totalBad} check(s) failed for ${label}:</strong> total discrepancy found ${fmtMoney2(s.discrepancy)}.${detail}`;
   }
 }
 
@@ -1187,13 +1187,13 @@ function renderCallouts(){
   document.getElementById('overviewCallout').innerHTML =
     `<strong>${stationLabel[currentStation]}:</strong> ${fmtNum(d.kpis.sessions)} sessions delivered ${fmtNum(Math.round(d.kpis.energy))} kWh and generated ${fmtMoney(d.kpis.revenue)} in gross revenue over the 12-month period, averaging ${d.kpis.avg_duration_min} minutes per session.`;
   document.getElementById('usageCallout').innerHTML =
-    `<strong>Pattern:</strong> ${d.kpis.overnight_sessions} of ${d.kpis.sessions} sessions (${(d.kpis.overnight_sessions/d.kpis.sessions*100).toFixed(0)}%) started overnight (22:00&ndash;6:00). Peak usage days and hours are visible in the charts above &mdash; use these to plan staffing, maintenance windows, or time-of-use pricing.`;
+    `<strong>Pattern:</strong> ${d.kpis.overnight_sessions} of ${d.kpis.sessions} sessions (${(d.kpis.overnight_sessions/d.kpis.sessions*100).toFixed(0)}%) started overnight (22:00&ndash;6:00). Peak usage days and hours are visible in the charts above. Use these to plan staffing, maintenance windows, or time-of-use pricing.`;
   document.getElementById('originCallout').innerHTML =
     (()=>{
       const known = Object.values(d.state).reduce((a,b)=>a+b,0);
       const unknown = UNKNOWN_ZIP[currentStation];
-      return `<strong>${d.kpis.oos_sessions} of ${known}</strong> sessions with a known state came from outside Kentucky &mdash; consistent with highway and regional tourist traffic near US-25E, not only local drivers. `
-        + `<strong>${unknown} of ${d.kpis.sessions}</strong> sessions (${(unknown/d.kpis.sessions*100).toFixed(0)}%) have no ZIP code on file at all (guest/anonymous checkout) and are excluded from the map and state chart entirely &mdash; they aren't "unknown location," they're simply not shown.`;
+      return `<strong>${d.kpis.oos_sessions} of ${known}</strong> sessions with a known state came from outside Kentucky, consistent with highway and regional tourist traffic near US-25E, not only local drivers. `
+        + `<strong>${unknown} of ${d.kpis.sessions}</strong> sessions (${(unknown/d.kpis.sessions*100).toFixed(0)}%) have no ZIP code on file at all (guest/anonymous checkout) and are excluded from the map and state chart entirely. They aren't "unknown location," they're simply not shown.`;
     })();
   const known2 = Object.values(d.state).reduce((a,b)=>a+b,0);
   const unknown2 = UNKNOWN_ZIP[currentStation];
@@ -1203,9 +1203,9 @@ function renderCallouts(){
 
 function renderRecTable(){
   document.getElementById('recTable').innerHTML = `
-    <tr><th>Question the city is asking</th><th>What Barbourville's data shows</th></tr>
-    <tr><td>What customer does a Level 2 charger attract?</td><td>Longer-dwelling visitors and some out-of-state travelers &mdash; fewer sessions than a DCFC, but each one lasts nearly 2x as long.</td></tr>
-    <tr><td>What's the revenue potential?</td><td>Modest and steady (~$458/yr in this dataset) &mdash; not a profit center on its own, but low-cost to operate.</td></tr>
+    <tr><th>Question Pineville is asking</th><th>What Barbourville's data shows</th></tr>
+    <tr><td>What customer does a Level 2 charger attract?</td><td>Longer-dwelling visitors and some out-of-state travelers. Fewer sessions than a DCFC, but each one lasts nearly 2x as long.</td></tr>
+    <tr><td>What's the revenue potential?</td><td>Modest and steady (~$458/yr in this dataset), not a profit center on its own but low-cost to operate.</td></tr>
     <tr><td>What's the economic ripple effect?</td><td>Published research (MIT/Nature Communications, 2024) links nearby chargers to measurable increases in nearby business spending, since drivers often shop or dine during a charging stop.</td></tr>
     <tr><td>How often would it be used?</td><td>About 1 session per day on average across both chargers combined; usage grew over the 12-month window as awareness increased.</td></tr>
   `;
