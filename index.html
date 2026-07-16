@@ -1031,7 +1031,7 @@ function renderKpis(){
     <div class="kpi"><div class="label">Avg Power While Charging</div><div class="value">${avgKwCharging}<small> kW</small></div></div>
     <div class="kpi"><div class="label">Gross Revenue</div><div class="value">${fmtMoney(k.revenue)}</div></div>
     <div class="kpi"><div class="label">Owner Payout</div><div class="value">${fmtMoney(k.payout)}</div></div>
-    <div class="kpi"><div class="label">Avg Session</div><div class="value">${k.avg_duration_min}<small> min</small></div></div>
+    <div class="kpi"><div class="label">Avg Session Length</div><div class="value">${k.avg_duration_min}<small> min</small></div></div>
     <div class="kpi"><div class="label">Avg Peak Power</div><div class="value">${k.avg_peak_kw}<small> kW</small></div></div>
     <div class="kpi"><div class="label">Overnight Sessions</div><div class="value">${fmtNum(k.overnight_sessions)}</div></div>
     <div class="kpi"><div class="label">Out-of-State</div><div class="value">${fmtNum(k.oos_sessions)}</div></div>
@@ -1047,7 +1047,7 @@ function renderCompareTable(){
     <tr><td>Avg energy / day (kWh)</td><td class="num">${(t.energy/365).toFixed(1)}</td><td class="num">${(c.energy/365).toFixed(1)}</td><td class="num">${(a.energy/365).toFixed(1)}</td></tr>
     <tr><td>Avg power while charging (kW)</td><td class="num">${(t.energy/t.total_hours).toFixed(1)}</td><td class="num">${(c.energy/c.total_hours).toFixed(1)}</td><td class="num">${(a.energy/a.total_hours).toFixed(1)}</td></tr>
     <tr><td>Revenue</td><td class="num">${fmtMoney(t.revenue)}</td><td class="num">${fmtMoney(c.revenue)}</td><td class="num">${fmtMoney(a.revenue)}</td></tr>
-    <tr><td>Avg session (min)</td><td class="num">${t.avg_duration_min}</td><td class="num">${c.avg_duration_min}</td><td class="num">${a.avg_duration_min}</td></tr>
+    <tr><td>Avg session length (min)</td><td class="num">${t.avg_duration_min}</td><td class="num">${c.avg_duration_min}</td><td class="num">${a.avg_duration_min}</td></tr>
     <tr><td>Avg peak power (kW)</td><td class="num">${t.avg_peak_kw}</td><td class="num">${c.avg_peak_kw}</td><td class="num">${a.avg_peak_kw}</td></tr>
   `;
 }
