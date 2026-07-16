@@ -881,7 +881,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
       </div>
       <div class="panel">
         <h3>Sessions by State of Origin</h3>
-        <div class="chart-wrap tall"><canvas id="chartState"></canvas></div>
+        <div class="chart-wrap" id="stateChartWrap" style="height:480px;"><canvas id="chartState"></canvas></div>
       </div>
     </div>
     <div class="callout" id="originCallout"></div>
@@ -899,7 +899,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
       </div>
       <div class="panel">
         <h3>Does Rate &times; kWh Equal What the Driver Paid?</h3>
-        <p class="note">Posted rate: $0.50/kWh (City Hall v7), $0.40/kWh (City Hall v4/v6), $0.25/kWh (Tourism).</p>
+        <p class="note">Posted rate changed over time at both stations: $0.25/kWh at launch (Oct 15&ndash;21, 2025), $0.40/kWh from Oct 22, 2025 to Mar 8, 2026, $0.50/kWh from Mar 11, 2026 onward.</p>
         <table class="data">
           <tr><th>Check</th><th>Result</th></tr>
           <tr><td>Energy charge (rate &times; kWh) matches the pre-tax session charge</td><td class="num">Not exactly, gap grows with session length</td></tr>
@@ -1022,9 +1022,11 @@ function makeOrUpdate(id, config){
 
 function renderKpis(){
   const k = DATA[currentStation].kpis;
+  const avgEnergyDay = (k.energy/365).toFixed(1);
   document.getElementById('kpiGrid').innerHTML = `
     <div class="kpi"><div class="label">Sessions</div><div class="value">${fmtNum(k.sessions)}</div></div>
     <div class="kpi"><div class="label">Energy Delivered</div><div class="value">${fmtNum(Math.round(k.energy))}<small> kWh</small></div></div>
+    <div class="kpi"><div class="label">Avg Energy / Day</div><div class="value">${avgEnergyDay}<small> kWh</small></div></div>
     <div class="kpi"><div class="label">Gross Revenue</div><div class="value">${fmtMoney(k.revenue)}</div></div>
     <div class="kpi"><div class="label">Owner Payout</div><div class="value">${fmtMoney(k.payout)}</div></div>
     <div class="kpi"><div class="label">Avg Session</div><div class="value">${k.avg_duration_min}<small> min</small></div></div>
@@ -1035,14 +1037,15 @@ function renderKpis(){
 }
 
 function renderCompareTable(){
-  const t = DATA.tourism.kpis, c = DATA.cityhall.kpis;
+  const t = DATA.tourism.kpis, c = DATA.cityhall.kpis, a = DATA.combined.kpis;
   document.getElementById('compareTable').innerHTML = `
-    <tr><th>Metric</th><th>Tourism (L2)</th><th>City Hall (L3)</th></tr>
-    <tr><td>Sessions</td><td class="num">${t.sessions}</td><td class="num">${c.sessions}</td></tr>
-    <tr><td>Energy (kWh)</td><td class="num">${t.energy}</td><td class="num">${c.energy}</td></tr>
-    <tr><td>Revenue</td><td class="num">${fmtMoney(t.revenue)}</td><td class="num">${fmtMoney(c.revenue)}</td></tr>
-    <tr><td>Avg session (min)</td><td class="num">${t.avg_duration_min}</td><td class="num">${c.avg_duration_min}</td></tr>
-    <tr><td>Avg peak power (kW)</td><td class="num">${t.avg_peak_kw}</td><td class="num">${c.avg_peak_kw}</td></tr>
+    <tr><th>Metric</th><th>Tourism (L2)</th><th>City Hall (L3)</th><th>Combined</th></tr>
+    <tr><td>Sessions</td><td class="num">${t.sessions}</td><td class="num">${c.sessions}</td><td class="num">${a.sessions}</td></tr>
+    <tr><td>Energy (kWh)</td><td class="num">${t.energy}</td><td class="num">${c.energy}</td><td class="num">${a.energy}</td></tr>
+    <tr><td>Avg energy / day (kWh)</td><td class="num">${(t.energy/365).toFixed(1)}</td><td class="num">${(c.energy/365).toFixed(1)}</td><td class="num">${(a.energy/365).toFixed(1)}</td></tr>
+    <tr><td>Revenue</td><td class="num">${fmtMoney(t.revenue)}</td><td class="num">${fmtMoney(c.revenue)}</td><td class="num">${fmtMoney(a.revenue)}</td></tr>
+    <tr><td>Avg session (min)</td><td class="num">${t.avg_duration_min}</td><td class="num">${c.avg_duration_min}</td><td class="num">${a.avg_duration_min}</td></tr>
+    <tr><td>Avg peak power (kW)</td><td class="num">${t.avg_peak_kw}</td><td class="num">${c.avg_peak_kw}</td><td class="num">${a.avg_peak_kw}</td></tr>
   `;
 }
 
@@ -1113,7 +1116,8 @@ function renderStateChart(){
   makeOrUpdate('chartState', {
     type:'bar',
     data:{ labels:entries.map(e=>e[0]), datasets:[{ label:'Sessions', data:entries.map(e=>e[1]), backgroundColor:stationColor[currentStation], borderRadius:4 }] },
-    options:{ indexAxis:'y', responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}} }
+    options:{ indexAxis:'y', responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}},
+      scales:{ y:{ ticks:{ autoSkip:false } }, x:{ ticks:{ precision:0 } } } }
   });
 }
 
